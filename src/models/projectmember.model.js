@@ -1,12 +1,12 @@
 import mongoose, { Schema } from "mongoose";
 import { AvailableUserRole, UserRolesEnum } from "../utils/constants.js"
-const projectMemberSchema=new Schema(
+const projectmemberSchema=new Schema(
     {
         user:{
             type:Schema.Types.ObjectId,
             ref:"User"
         },
-        assignedToProject:{
+        project:{
             type:Schema.Types.ObjectId,
             ref:"Project"
         },
@@ -23,4 +23,4 @@ const projectMemberSchema=new Schema(
         timestamps:true
     }
 )
-export const ProjectMember=mongoose.model("ProjectMember",projectMemberSchema);
+export const Projectmember=mongoose.model("Projectmember",projectmemberSchema);

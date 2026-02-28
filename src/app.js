@@ -7,8 +7,7 @@ app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 
-app.use(cookieParser())
-
+app.use(cookieParser());
 
 app.use(
   cors({
@@ -20,8 +19,10 @@ app.use(
 );
 import healthCheckRouter from "./routes/healthroutes.js";
 app.use("/api/v1/healthcheck", healthCheckRouter);
-import authRouter from "./routes/auth.routes.js"
-app.use("/api/v1/auth", authRouter)
+import authRouter from "./routes/auth.routes.js";
+app.use("/api/v1/auth", authRouter);
+import projectRouter from "./routes/project.routes.js";
+app.use("/api/v1/projects", projectRouter);
 app.get("/", (req, res) => {
   res.send("hey i am app");
 });

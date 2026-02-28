@@ -12,19 +12,23 @@ const taskSchema=new Schema(
         },
         user:{
             type:Schema.Types.ObjectId,
-            ref:"User"
+            ref:"User",
+            required:true
         },
         project:{
             type:Schema.Types.ObjectId,
-            ref:"Project"
+            ref:"Project",
+            required:true,
         },
         assignedTo:{
             type:Schema.Types.ObjectId,
-            ref:"User"
+            ref:"User",
+            required:true,
         },
         assignedBy:{
             type:Schema.Types.ObjectId,
-            ref:"User"
+            ref:"User",
+            required:true
         },
         status:{
             type:String,

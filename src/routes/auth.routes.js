@@ -18,7 +18,7 @@ import {
   userLoginValidator,
   userRegisterValidator,
   userResetForgotPasswordValidator,
-} from "../middlewares/index.js";
+} from "../validators/index.js";
 import { checkToken } from "../middlewares/auth.middleware.js";
 const router = Router();
 router.route("/register").post(userRegisterValidator(), validate, registerUser);

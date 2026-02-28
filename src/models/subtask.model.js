@@ -9,12 +9,18 @@ const subtaskSchema=new Schema(
         },
         task:{
             type:Schema.Types.ObjectId,
-            ref:"Task"
+            ref:"Task",
+            required:true
         },
         completed:{
             type:Boolean,
             default:true
         },
+        createdBy:{
+            type:Schema.Types.ObjectId,
+            ref:"User",
+            required:true
+        }
     },{
         timestamps:true
     }

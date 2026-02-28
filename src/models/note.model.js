@@ -9,11 +9,13 @@ const noteSchema=new Schema(
         },
         project:{
             type:Schema.Types.ObjectId,
-            ref:"Project"
+            ref:"Project",
+            required:true,
         },
         createdBy:{
             type:Schema.Types.ObjectId,
-            ref:"User"
+            ref:"User",
+            required:true,
         }
     },{
         timestamps:true
