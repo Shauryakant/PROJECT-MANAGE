@@ -22,7 +22,7 @@ export const checkToken = asyncHandler(async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    throw new ApiError(500, "JWT TOKEN VERIFICATION FAILED");
+    throw new ApiError(401, "JWT TOKEN VERIFICATION FAILED");
   }
 });
 
@@ -32,15 +32,19 @@ export const validateProjectPermission = (roles = []) => {
     if (!projectId) {
       throw new ApiError(400, "Please enter project id");
     }
+    if (!mongoose.isValidObjectId(projectId)) {
+        throw new ApiError(400, "Invalid projectId");
+   }
+
     const member = await Projectmember.findOne({
-      user: new mongoose.Types.ObjectId(req.user._id),
+      user: new mongoose.Types.ObjectId(req.user?._id),
       project: new mongoose.Types.ObjectId(projectId),
     });
     if (!member) {
       throw new ApiError(404, "Project Member does not exist");
     }
-    if (!roles.includes(member.role)) {
-      throw new ApiError(404, "User not authorized to perform the operation");
+    if (roles.length &&!roles.includes(member.role)) {
+      throw new ApiError(403, "User not authorized to perform the operation");
     }
     req.user.role = member.role;
     next();
